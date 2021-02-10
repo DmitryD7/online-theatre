@@ -4,8 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../utils/types";
 import {fetchTrending} from "./moviesReducer/movies-reducer";
 import {Movie} from "./Movie/Movie";
-
-const BASE_IMG_URL = 'https://image.tmdb.org/t/p/original/'
+import {BASE_IMG_URL} from "../App/App";
 
 export const MoviesRows = () => {
     const movies = useSelector((state: AppRootStateType) => state.movies)
