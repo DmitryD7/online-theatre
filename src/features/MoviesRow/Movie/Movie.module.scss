@@ -1,1 +1,12 @@
-.movie {}
+.movie {
+   .movie_img{
+     object-fit: contain;
+     max-height: 200px;
+     transition: transform 450ms;
+     margin-right: 10px;
+   }
+  .movie_img:hover {
+    transform: scale(1.09);
+    cursor: pointer;
+  }
+}

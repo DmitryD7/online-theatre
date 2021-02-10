@@ -1,1 +1,6 @@
-.moviesRow {}
+.moviesRows {
+  .movieRow {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

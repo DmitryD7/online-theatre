@@ -11,10 +11,10 @@ export const moviesApi = {
         return instanceApi.get<CommonResponseType>(`trending/all/week?api_key=${API_KEY}`)
     },
     fetchTopRated() {
-        return instanceApi.get<CommonResponseType>(`tmovie/top_rated?api_key=${API_KEY}&language=en-US`)
+        return instanceApi.get<CommonResponseType>(`movie/top_rated?api_key=${API_KEY}&language=en-US`)
     },
     fetchPopular() {
-        return instanceApi.get<CommonResponseType>(`tmovie/popular?api_key=${API_KEY}&language=en-US`)
+        return instanceApi.get<CommonResponseType>(`movie/popular?api_key=${API_KEY}&language=en-US`)
     },
     fetchActionMovies() {
         return instanceApi.get<CommonResponseType>(`discover/movie?api_key=${API_KEY}&with_genres=28`)
