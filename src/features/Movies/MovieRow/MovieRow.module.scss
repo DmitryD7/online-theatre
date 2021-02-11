@@ -1,0 +1,14 @@
+.moviesRow {
+  color: #ffffff;
+  margin-bottom: 20px;
+
+  .movieRow_rowTitle {
+    margin: 10px 0;
+    font-size: 29px;
+  }
+
+  .movieRow_content {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

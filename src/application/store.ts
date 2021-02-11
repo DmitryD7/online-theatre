@@ -1,6 +1,6 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import thunkMiddleware from "redux-thunk";
-import {slice} from "../features/MoviesRow/moviesReducer/movies-reducer";
+import {slice} from "../features/Movies/moviesReducer/movies-reducer";
 
 export const rootReducer = combineReducers({
     movies: slice.reducer
