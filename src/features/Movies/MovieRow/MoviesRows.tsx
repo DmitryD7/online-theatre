@@ -1,22 +1,23 @@
 import React, {useState} from "react";
 import s from "./MovieRow.module.scss"
 import {Movie} from "./Movie/Movie";
-import {BASE_IMG_URL} from "../../App/App";
 import {MovieType} from "../../../api/apiTypes";
-import YouTube, {Options} from "react-youtube";
-// @ts-ignore
-import movieTrailer from 'movie-trailer'
+import YouTube from "react-youtube";
+import {handleShowTrailerClick, opts} from "../../../utils/showTrailer";
 
 export const MoviesRow = (props: MovieRowsPropsType) => {
+    const [trailerUrl, setTrailerUrl] = useState<string | null>('')
 
+    const ShowTrailerClick = (movie: MovieType) => {
+        handleShowTrailerClick({movie, trailerUrl, setTrailerUrl})
+    }
 
     return <div className={s.moviesRow}>
         <h2 className={s.movieRow_rowTitle}>{props.rowTitle}</h2>
         {<div className={s.movieRow_content}>
-            {props.movies?.map(movie => <Movie key={movie.id} imgLink={`${BASE_IMG_URL}${movie.poster_path}`}
-                                                   movieTitle={movie.title || movie.name}/>)}
+            {props.movies?.map(movie => <Movie key={movie.id} handleClick={ShowTrailerClick} movie={movie}/>)}
         </div>}
-        {/*{trailerUrl && <YouTube videoId={trailerUrl} opts={opts}/>}*/}
+        {trailerUrl && <YouTube videoId={trailerUrl} opts={opts}/>}
     </div>
 }
 
