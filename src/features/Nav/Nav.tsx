@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import s from "./Nav.module.scss"
 import theatreLogo from "../../assets/images/movieTheatre.png"
 import userAvatar from "../../assets/images/avatar.png"
+import ControlledOpenSelect from "../../components/Select/Select";
 
 export const Nav = () => {
     const [isSeen, setIsSeen] = useState(false)
@@ -14,5 +15,6 @@ export const Nav = () => {
     return <div className={`${s.nav} ${isSeen ? s.nav_bg_black : ''}`}>
         <img src={theatreLogo} alt="logo" className={s.nav_logo}/>
         <img src={userAvatar} alt="avatar" className={s.nav_avatar}/>
+        <div className={s.nav_select}><ControlledOpenSelect/></div>
     </div>
 }
