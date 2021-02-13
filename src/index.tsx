@@ -22,12 +22,10 @@ const theme = createMuiTheme({
 ReactDOM.render(
     <Provider store={store}>
         <ThemeProvider theme={theme}>
-            <React.StrictMode>
-                <App/>
-            </React.StrictMode>
+            <App/>
         </ThemeProvider>
     </Provider>,
-  document.getElementById('root')
+    document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
