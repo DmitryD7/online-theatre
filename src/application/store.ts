@@ -1,9 +1,11 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import thunkMiddleware from "redux-thunk";
-import {slice} from "../features/Movies/moviesReducer/movies-reducer";
+import {slice as moviesSlice} from "../features/Movies/moviesReducer/movies-reducer";
+import {slice as categoryMoviesSlice} from "../features/MoviesByCategory/categoryMoviesReducer/categoryMovies-reducer";
 
 export const rootReducer = combineReducers({
-    movies: slice.reducer
+    movies: moviesSlice.reducer,
+    categoryMovies: categoryMoviesSlice.reducer
 })
 
 export const store = configureStore(
