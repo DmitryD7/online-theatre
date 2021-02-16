@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import {Provider} from "react-redux";
 import {store} from "./application/store";
 import {createMuiTheme, ThemeProvider} from "@material-ui/core";
+import {BrowserRouter} from "react-router-dom";
 
 //For MaterialUI colors
 const theme = createMuiTheme({
@@ -20,11 +21,13 @@ const theme = createMuiTheme({
 });
 
 ReactDOM.render(
-    <Provider store={store}>
+    <BrowserRouter>
+        <Provider store={store}>
         <ThemeProvider theme={theme}>
             <App/>
         </ThemeProvider>
-    </Provider>,
+    </Provider>
+    </BrowserRouter>,
     document.getElementById('root')
 );
 

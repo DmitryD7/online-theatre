@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useCallback, useState} from "react";
 import {MovieType} from "../../../api/apiTypes";
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -9,23 +9,53 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import {BASE_IMG_URL} from "../../App/App";
+import {truncate} from "../../Header/Header";
+import {handleShowTrailerClick, opts} from "../../../utils/showTrailer";
+import YouTube from "react-youtube";
 
 const useStyles = makeStyles({
     root: {
-        maxWidth: 345,
-        backgroundColor: '#222'
+        width: 315,
+        height: 489,
+        backgroundColor: '#222',
+        marginBottom: 27,
+        position: 'relative',
     },
     media: {
         height: 200,
     },
-    overview: {
-        fontSize: '0.8rem'
+    topInfo: {
+        display: 'flex',
+        justifyContent: "space-between",
+        alignItems: "center",
+        flexWrap: 'wrap-reverse',
+        marginBottom: 5,
     },
+    overview: {
+        fontSize: '0.73rem',
+    },
+    button: {
+        margin: '0 auto',
+        position: 'absolute',
+        bottom: 15,
+        left: 0,
+        right: 0,
+    },
+    trailer: {
+    }
 });
 
 export const MovieCard = (props: MoviePropsType) => {
     const classes = useStyles();
     const {movie} = props
+
+    const [trailerUrl, setTrailerUrl] = useState<string | null>('')
+
+    const showTrailer = useCallback(() => handleShowTrailerClick({
+        movie,
+        trailerUrl,
+        setTrailerUrl
+    }), [movie, trailerUrl])
 
     return (
         <Card className= {classes.root}>
@@ -36,22 +66,25 @@ export const MovieCard = (props: MoviePropsType) => {
                     title={movie?.title || movie?.name}
                 />
                 <CardContent>
-                    <div style={{display: 'flex', justifyContent: "space-between", alignItems: "center", marginBottom: '5px'}}><Typography gutterBottom variant="h5" component="h2" color={"primary"}>
+                    <div className={classes.topInfo}>
+                        <Typography gutterBottom variant='subtitle1' component="h3" color={"primary"}>
                         {movie?.title || movie?.name}
                     </Typography>
-                        <Typography color={"primary"} variant={"subtitle1"}>
+                        <Typography color={"primary"} variant={"subtitle2"}>
                             Rating: {movie?.vote_average}
-                        </Typography></div>
+                        </Typography>
+                    </div>
                     <Typography variant="body2" color="primary" component="p" className={classes.overview}>
-                        {movie?.overview}
+                        {truncate(movie?.overview, 500)}
                     </Typography>
                 </CardContent>
             </CardActionArea>
             <CardActions>
-                <Button size="medium" color="primary" variant={"outlined"} style={{margin: '0 auto'}}>
+                <Button size="medium" color="primary" variant={"outlined"} className={classes.button} onClick={showTrailer}>
                     Watch trailer
                 </Button>
             </CardActions>
+            {trailerUrl && <div className={classes.trailer}><YouTube videoId={trailerUrl} opts={opts}/></div>}
         </Card>
     )
 }

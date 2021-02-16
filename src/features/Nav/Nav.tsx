@@ -7,6 +7,7 @@ import {CategoriesMoviesType} from "../MoviesByCategory/categoryMoviesReducer/ca
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../utils/types";
 import {setCategory} from "../MoviesByCategory/categoryMoviesReducer/categoryMovies-reducer"
+import { NavLink } from "react-router-dom";
 
 export const Nav = () => {
     const [isSeen, setIsSeen] = useState(false)
@@ -22,12 +23,12 @@ export const Nav = () => {
     const values: CategoriesMoviesType[] = ["action", "comedy", "documentary", "drama", "horror"]
 
     const setNewCategory = (value: CategoriesMoviesType) => {
-        //dispatch(setCategory(value))
-        console.log('CURRENT CATEGORY INSIDE NAV: ' + currentCategory)
+        dispatch(setCategory(value))
+        console.log('CATEGORY inside NAV: ' + currentCategory)
     }
 
     return <div className={`${s.nav} ${isSeen ? s.nav_bg_black : ''}`}>
-        <img src={theatreLogo} alt="logo" className={s.nav_logo}/>
+        <NavLink to={'/home'}><img src={theatreLogo} alt="logo" className={s.nav_logo}/></NavLink>
         <img src={userAvatar} alt="avatar" className={s.nav_avatar}/>
         <div className={s.nav_select}>
             <SelectComponent values={values} currentValue={currentCategory} onSelectHandler={setNewCategory}/>

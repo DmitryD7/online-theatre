@@ -1,15 +1,10 @@
-import React, {SyntheticEvent, useState} from 'react';
+import React, {useState} from 'react';
+import {NavLink} from 'react-router-dom';
 import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import {useDispatch, useSelector} from "react-redux";
-import {
-    CategoriesMoviesType,
-    setCategory
-} from "../../features/MoviesByCategory/categoryMoviesReducer/categoryMovies-reducer";
-import {AppRootStateType} from "../../utils/types";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -30,16 +25,11 @@ const useStyles = makeStyles((theme: Theme) =>
 export function SelectComponent(props: SelectPropsType) {
     const {values, currentValue, onSelectHandler} = props
     const classes = useStyles();
-    const dispatch = useDispatch()
-    const currentCategory = useSelector<AppRootStateType, CategoriesMoviesType>(state => state.categoryMovies.category)
 
     const [firstValue, setFirstValue] = useState('')
 
     const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-        //onSelectHandler(event.target.value as string);
-        dispatch(setCategory(event.target.value as CategoriesMoviesType))
-        console.log('STATE VALUE: ' + currentCategory)
-
+        onSelectHandler(event.target.value as string);
         console.log('TARGET: ' + event.target.value)
     };
 
@@ -50,11 +40,14 @@ export function SelectComponent(props: SelectPropsType) {
                 <Select
                     labelId="categories-select-label"
                     id="categories-select"
-                    value={currentCategory ? currentCategory : firstValue }
+                    value={currentValue ? currentValue : firstValue}
                     onChange={handleChange}
                     style={{color: '#fff'}}
                 >
-                    {values.map(val => <MenuItem key={val} value={val}>{val}</MenuItem>)}
+                    {values.map(val => <MenuItem key={val} value={val}>
+                        {/*<NavLink to={'/category'}>{val}</NavLink>*/}
+                        {val}
+                        </MenuItem>)}
                 </Select>
             </FormControl>
         </div>

@@ -1,1 +1,14 @@
-.moviesByCategory{}
+.moviesByCategory{
+  color: #fff;
+  padding: 20px 30px;
+  .moviesByCategory_title {
+    margin-bottom: 27px;
+    margin-left: 30px;
+  }
+  .moviesByCategory_content{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    position: relative;
+  }
+}

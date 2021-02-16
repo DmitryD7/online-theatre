@@ -12,11 +12,14 @@ export const MoviesByCategory = () => {
     const moviesByCategory = useSelector<AppRootStateType, MovieType[]>(state => state.categoryMovies.movies)
 
     useEffect(() => {
-        dispatch(fetchMovies("drama"))
-    }, [])
+        dispatch(fetchMovies(category))
+        console.log('CATEGORY in useEffect: ' + category)
+    }, [category])
 
     return <div className={s.moviesByCategory}>
-        <h2>ACTION</h2>
-        <MovieCard movie={moviesByCategory && moviesByCategory[0]}/>
+        <h2 className={s.moviesByCategory_title}>{category?.toUpperCase()}</h2>
+        <div className={s.moviesByCategory_content}>
+            {moviesByCategory?.map(m => <MovieCard key={m.id} movie={m}/>)}
+        </div>
     </div>
 }
