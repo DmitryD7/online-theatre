@@ -13,7 +13,6 @@ export const MoviesByCategory = () => {
 
     useEffect(() => {
         dispatch(fetchMovies(category))
-        console.log('CATEGORY in useEffect: ' + category)
     }, [category])
 
     return <div className={s.moviesByCategory}>

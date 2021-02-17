@@ -14,7 +14,7 @@ function App() {
         <Nav/>
         <Header/>
         <Switch>
-            <Route path={'/home'} render={() => <Movies/>}/>
+            <Route exact path={'/'} render={() => <Movies/>}/>
             <Route path={'/category'} render={() => <MoviesByCategory/>}/>
         </Switch>
     </div>

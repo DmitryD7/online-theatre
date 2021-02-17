@@ -26,11 +26,8 @@ export function SelectComponent(props: SelectPropsType) {
     const {values, currentValue, onSelectHandler} = props
     const classes = useStyles();
 
-    const [firstValue, setFirstValue] = useState('')
-
     const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
         onSelectHandler(event.target.value as string);
-        console.log('TARGET: ' + event.target.value)
     };
 
     return (
@@ -40,13 +37,12 @@ export function SelectComponent(props: SelectPropsType) {
                 <Select
                     labelId="categories-select-label"
                     id="categories-select"
-                    value={currentValue ? currentValue : firstValue}
+                    value={currentValue ? currentValue : ''}
                     onChange={handleChange}
                     style={{color: '#fff'}}
                 >
                     {values.map(val => <MenuItem key={val} value={val}>
-                        {/*<NavLink to={'/category'}>{val}</NavLink>*/}
-                        {val}
+                        <NavLink to={'/category'} style={{textDecoration: "none", color: 'inherit'}}>{val}</NavLink>
                         </MenuItem>)}
                 </Select>
             </FormControl>

@@ -42,7 +42,12 @@ const useStyles = makeStyles({
         right: 0,
     },
     trailer: {
-    }
+        width: '100%',
+        textAlign: 'center',
+        paddingBottom: 13,
+        marginBottom: 13,
+        backgroundColor: '#000'
+    },
 });
 
 export const MovieCard = (props: MoviePropsType) => {
@@ -58,7 +63,7 @@ export const MovieCard = (props: MoviePropsType) => {
     }), [movie, trailerUrl])
 
     return (
-        <Card className= {classes.root}>
+        <><Card className={classes.root}>
             <CardActionArea>
                 <CardMedia
                     className={classes.media}
@@ -68,8 +73,8 @@ export const MovieCard = (props: MoviePropsType) => {
                 <CardContent>
                     <div className={classes.topInfo}>
                         <Typography gutterBottom variant='subtitle1' component="h3" color={"primary"}>
-                        {movie?.title || movie?.name}
-                    </Typography>
+                            {movie?.title || movie?.name}
+                        </Typography>
                         <Typography color={"primary"} variant={"subtitle2"}>
                             Rating: {movie?.vote_average}
                         </Typography>
@@ -80,12 +85,16 @@ export const MovieCard = (props: MoviePropsType) => {
                 </CardContent>
             </CardActionArea>
             <CardActions>
-                <Button size="medium" color="primary" variant={"outlined"} className={classes.button} onClick={showTrailer}>
+                <Button size="medium" color="primary" variant={"outlined"} className={classes.button}
+                        onClick={showTrailer}>
                     Watch trailer
                 </Button>
             </CardActions>
-            {trailerUrl && <div className={classes.trailer}><YouTube videoId={trailerUrl} opts={opts}/></div>}
         </Card>
+            {trailerUrl && <div className={classes.trailer} onBlur={() => console.log('ONBLUR')} >
+                <YouTube videoId={trailerUrl} opts={opts}/>
+                <Button onClick={() => setTrailerUrl('')} size="medium" color="primary" variant={"outlined"}>close trailer</Button>
+            </div>}</>
     )
 }
 
