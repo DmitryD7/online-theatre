@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {NavLink} from 'react-router-dom';
 import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export function SelectComponent(props: SelectPropsType) {
-    const {values, currentValue, onSelectHandler} = props
+    const {values, currentValue, onSelectHandler} = props;
     const classes = useStyles();
 
     const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
@@ -43,7 +43,7 @@ export function SelectComponent(props: SelectPropsType) {
                 >
                     {values.map(val => <MenuItem key={val} value={val}>
                         <NavLink to={'/category'} style={{textDecoration: "none", color: 'inherit'}}>{val}</NavLink>
-                        </MenuItem>)}
+                    </MenuItem>)}
                 </Select>
             </FormControl>
         </div>

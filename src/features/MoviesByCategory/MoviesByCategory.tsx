@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import s from "./MoviesByCategory.module.scss"
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../utils/types";
-import {CategoriesMoviesType, fetchMovies} from "./categoryMoviesReducer/categoryMovies-reducer";
+import {CategoriesMoviesType, fetchMovies} from "../../application/categoryMoviesReducer/categoryMovies-reducer";
 import {MovieType} from "../../api/apiTypes";
 import {MovieCard} from "./MovieCard/MovieCard";
 
@@ -13,7 +13,7 @@ export const MoviesByCategory = () => {
 
     useEffect(() => {
         dispatch(fetchMovies(category))
-    }, [category])
+    }, [category, dispatch])
 
     return <div className={s.moviesByCategory}>
         <h2 className={s.moviesByCategory_title}>{category?.toUpperCase()}</h2>

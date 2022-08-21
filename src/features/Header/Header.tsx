@@ -6,7 +6,7 @@ import {BASE_IMG_URL} from "../App/App";
 import {MovieType} from "../../api/apiTypes";
 import YouTube from "react-youtube";
 import {handleShowTrailerClick, opts} from "../../utils/showTrailer";
-import {CategoriesMoviesType} from "../MoviesByCategory/categoryMoviesReducer/categoryMovies-reducer";
+import {CategoriesMoviesType} from "../../application/categoryMoviesReducer/categoryMovies-reducer";
 import Button from "@material-ui/core/Button";
 
 export const truncate = (str: string, n: number) => str?.length > n ? str.substr(0, n-1) + '...' : str
@@ -20,7 +20,7 @@ export const Header = () => {
     //EDIT
     useEffect(() => {
         setIndex(Math.floor( Math.random() * 20 - 1))
-    }, [movie, moviesByCategory])
+    }, [category, movie])
 
     const [trailerUrl, setTrailerUrl] = useState<string | null>('')
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './App.module.scss'
 import {Header} from "../Header/Header";
-import {Nav} from "../Nav/Nav";
+import {Nav} from "../../components/Nav/Nav";
 import {Movies} from "../Movies/Movies";
 import {MoviesByCategory} from "../MoviesByCategory/MoviesByCategory";
 import {Route, Switch} from "react-router-dom"

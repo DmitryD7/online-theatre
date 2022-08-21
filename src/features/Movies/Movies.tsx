@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import s from "./Movies.module.scss"
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../utils/types";
-import {fetchTrending} from "./moviesReducer/movies-reducer";
+import {fetchTrending} from "../../application/moviesReducer/movies-reducer";
 import {MoviesRow} from "./MovieRow/MoviesRows";
 import { Container } from "@material-ui/core";
 
@@ -12,7 +12,7 @@ export const Movies = () => {
 
     useEffect(() => {
         dispatch(fetchTrending())
-    }, [])
+    }, [dispatch])
 
     return <div className={s.movies}>
         <Container disableGutters={true} maxWidth={'lg'} className={s.movie_container}>
