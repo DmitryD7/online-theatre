@@ -1,35 +1,46 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {moviesApi} from "../../../api/api";
-import {CategoriesMoviesType, MovieType} from "../../../models/models";
+import {CategoriesMoviesType, MovieType, ThunkError} from "../../../models/models";
+import {appActions} from "../../actions/appCommonActions";
 
+const {setAppStatus} = appActions;
 
 export const fetchMovies = createAsyncThunk<{ movies: MovieType[] }, CategoriesMoviesType, ThunkError>('categoryMovies/fetchMovies', async (category, thunkAPI) => {
+    setAppStatus({status: "loading"});
     try {
         switch (category) {
             case "action": {
-                const resAction = await moviesApi.fetchActionMovies()
-                return {movies: resAction.data.results}
+                const resAction = await moviesApi.fetchActionMovies();
+                setAppStatus({status: "succeeded"});
+                return {movies: resAction.data.results};
             }
             case "comedy": {
-                const resComedy = await moviesApi.fetchComedy()
-                return {movies: resComedy.data.results}
+                const resComedy = await moviesApi.fetchComedy();
+                setAppStatus({status: "succeeded"});
+                return {movies: resComedy.data.results};
             }
             case "documentary": {
-                const resDocumentaries = await moviesApi.fetchDocumentaries()
-                return {movies: resDocumentaries.data.results}
+                const resDocumentaries = await moviesApi.fetchDocumentaries();
+                setAppStatus({status: "succeeded"});
+                return {movies: resDocumentaries.data.results};
             }
             case "drama": {
-                const resDrama = await moviesApi.fetchDrama()
-                return {movies: resDrama.data.results}
+                const resDrama = await moviesApi.fetchDrama();
+                setAppStatus({status: "succeeded"});
+                return {movies: resDrama.data.results};
             }
             case "horror": {
-                const resHorror = await moviesApi.fetchHorror()
-                return {movies: resHorror.data.results}
+                const resHorror = await moviesApi.fetchHorror();
+                setAppStatus({status: "succeeded"});
+                return {movies: resHorror.data.results};
             }
-            default:
+            default: {
+                setAppStatus({status: "failed"});
                 throw new Error("Can't get data");
+            }
         }
     } catch (error) {
+        setAppStatus({status: "failed"});
         return thunkAPI.rejectWithValue({errors: [error.message]})
     }
 })
@@ -61,11 +72,3 @@ export type CategoryMoviesStateType = {
     movies: MovieType[]
     category: CategoriesMoviesType
 }
-
-export type ThunkError = {
-    rejectValue:
-        {
-            errors: Array<string>
-        }
-}
-

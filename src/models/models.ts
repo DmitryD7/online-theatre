@@ -7,6 +7,13 @@ export type CommonResponseType = {
     total_results: number
 }
 
+export type ThunkError = {
+    rejectValue:
+        {
+            errors: Array<string>
+        }
+}
+
 export type MovieType = {
     adult: boolean
     backdrop_path: string
