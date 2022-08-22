@@ -1,6 +1,6 @@
 import React, {useCallback, useState} from "react";
 import {MovieType} from "../../../api/apiTypes";
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -10,8 +10,8 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import {BASE_IMG_URL} from "../../App/App";
 import {truncate} from "../../Header/Header";
-import {handleShowTrailerClick, opts} from "../../../utils/showTrailer";
-import YouTube from "react-youtube";
+import {handleShowTrailerClick} from "../../../utils/showTrailer";
+import {MovieTrailer} from "../../../components/MovieTrailer/MovieTrailer";
 
 const useStyles = makeStyles({
     root: {
@@ -54,7 +54,7 @@ export const MovieCard = (props: MoviePropsType) => {
     const classes = useStyles();
     const {movie} = props
 
-    const [trailerUrl, setTrailerUrl] = useState<string | null>('')
+    const [trailerUrl, setTrailerUrl] = useState<string>('')
 
     const showTrailer = useCallback(() => handleShowTrailerClick({
         movie,
@@ -91,10 +91,8 @@ export const MovieCard = (props: MoviePropsType) => {
                 </Button>
             </CardActions>
         </Card>
-            {trailerUrl && <div className={classes.trailer} onBlur={() => console.log('ONBLUR')} >
-                <YouTube videoId={trailerUrl} opts={opts}/>
-                <Button onClick={() => setTrailerUrl('')} size="medium" color="primary" variant={"outlined"}>close trailer</Button>
-            </div>}</>
+            {trailerUrl && <MovieTrailer trailerUrl={trailerUrl} setTrailerUrl={setTrailerUrl}/>}
+        </>
     )
 }
 

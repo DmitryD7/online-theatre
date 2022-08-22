@@ -2,8 +2,8 @@ import React, {useState} from "react";
 import s from "./MovieRow.module.scss"
 import {Movie} from "./Movie/Movie";
 import {MovieType} from "../../../api/apiTypes";
-import YouTube from "react-youtube";
-import {handleShowTrailerClick, opts} from "../../../utils/showTrailer";
+import {handleShowTrailerClick} from "../../../utils/showTrailer";
+import {MovieTrailer} from "../../../components/MovieTrailer/MovieTrailer";
 
 export const MoviesRow = (props: MovieRowsPropsType) => {
     const [trailerUrl, setTrailerUrl] = useState<string | null>('')
@@ -17,7 +17,7 @@ export const MoviesRow = (props: MovieRowsPropsType) => {
         {<div className={s.movieRow_content}>
             {props.movies?.map(movie => <Movie key={movie.id} handleClick={ShowTrailerClick} movie={movie}/>)}
         </div>}
-        {trailerUrl && <YouTube videoId={trailerUrl} opts={opts}/>}
+        {trailerUrl && <MovieTrailer trailerUrl={trailerUrl} setTrailerUrl={setTrailerUrl}/>}
     </div>
 }
 

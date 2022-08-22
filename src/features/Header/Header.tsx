@@ -4,10 +4,9 @@ import {useSelector} from "react-redux";
 import {AppRootStateType} from "../../utils/types";
 import {BASE_IMG_URL} from "../App/App";
 import {MovieType} from "../../api/apiTypes";
-import YouTube from "react-youtube";
-import {handleShowTrailerClick, opts} from "../../utils/showTrailer";
+import {handleShowTrailerClick} from "../../utils/showTrailer";
 import {CategoriesMoviesType} from "../../application/categoryMoviesReducer/categoryMovies-reducer";
-import Button from "@material-ui/core/Button";
+import {MovieTrailer} from "../../components/MovieTrailer/MovieTrailer";
 
 export const truncate = (str: string, n: number) => str?.length > n ? str.substr(0, n-1) + '...' : str
 
@@ -48,10 +47,6 @@ export const Header = () => {
             </div>
         </div>
         <div className={s.banner_fadeBottom}></div>
-        {trailerUrl && <div className={s.banner_trailer}>
-            <YouTube videoId={trailerUrl} opts={opts}/>
-            <Button onClick={() => setTrailerUrl('')} size="medium" color="primary" variant={"outlined"}>close trailer</Button>
-        </div>}
-        {/*{trailerUrl && <YouTube videoId={trailerUrl} opts={opts}/>}*/}
+        {trailerUrl && <MovieTrailer trailerUrl={trailerUrl} setTrailerUrl={setTrailerUrl}/>}
     </header>
 }
