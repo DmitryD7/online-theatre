@@ -5,7 +5,7 @@ import {AppRootStateType} from "../../utils/types";
 import {MovieCard} from "./MovieCard/MovieCard";
 import {CategoriesMoviesType, MovieType} from "../../models/models";
 import {fetchMovies} from "../../application/reducers/categoryMoviesReducer/categoryMovies-reducer";
-import Loader from "../../components/Loader";
+import Loader from "../../components/Loader/Loader";
 
 export const MoviesByCategory = () => {
     const dispatch = useDispatch();

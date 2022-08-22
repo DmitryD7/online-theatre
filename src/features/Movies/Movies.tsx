@@ -5,7 +5,7 @@ import {AppRootStateType} from "../../utils/types";
 import {fetchTrending} from "../../application/reducers/moviesReducer/movies-reducer";
 import {MoviesRow} from "./MovieRow/MoviesRows";
 import {Container} from "@material-ui/core";
-import Loader from "../../components/Loader";
+import Loader from "../../components/Loader/Loader";
 
 export const Movies = () => {
     const movies = useSelector((state: AppRootStateType) => state.movies);
