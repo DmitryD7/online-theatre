@@ -1,3 +1,12 @@
+export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
+
+export type CommonResponseType = {
+    page: number
+    results: Array<MovieType>
+    total_pages: number
+    total_results: number
+}
+
 export type MovieType = {
     adult: boolean
     backdrop_path: string
@@ -16,9 +25,4 @@ export type MovieType = {
     vote_count: number
 }
 
-export type CommonResponseType = {
-    page: number
-    results: Array<MovieType>
-    total_pages: number
-    total_results: number
-}
+export type CategoriesMoviesType = 'action' | 'comedy' | 'horror' | 'drama' | 'documentary'

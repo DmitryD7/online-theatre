@@ -3,10 +3,9 @@ import s from "./Header.module.scss"
 import {useSelector} from "react-redux";
 import {AppRootStateType} from "../../utils/types";
 import {BASE_IMG_URL} from "../App/App";
-import {MovieType} from "../../api/apiTypes";
 import {handleShowTrailerClick} from "../../utils/showTrailer";
-import {CategoriesMoviesType} from "../../application/categoryMoviesReducer/categoryMovies-reducer";
 import {MovieTrailer} from "../../components/MovieTrailer/MovieTrailer";
+import {CategoriesMoviesType, MovieType} from "../../models/models";
 
 export const truncate = (str: string, n: number) => str?.length > n ? str.substr(0, n-1) + '...' : str
 

@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import s from "./Movies.module.scss"
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../utils/types";
-import {fetchTrending} from "../../application/moviesReducer/movies-reducer";
+import {fetchTrending} from "../../application/reducers/moviesReducer/movies-reducer";
 import {MoviesRow} from "./MovieRow/MoviesRows";
 import { Container } from "@material-ui/core";
 

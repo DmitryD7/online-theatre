@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./Movie.module.scss"
-import {MovieType} from "../../../../api/apiTypes";
 import {BASE_IMG_URL} from "../../../App/App";
+import {MovieType} from "../../../../models/models";
 
 
 export const Movie = (props: MoviePropsType) => {

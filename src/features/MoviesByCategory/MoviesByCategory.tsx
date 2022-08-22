@@ -2,9 +2,9 @@ import React, {useEffect} from "react";
 import s from "./MoviesByCategory.module.scss"
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../utils/types";
-import {CategoriesMoviesType, fetchMovies} from "../../application/categoryMoviesReducer/categoryMovies-reducer";
-import {MovieType} from "../../api/apiTypes";
 import {MovieCard} from "./MovieCard/MovieCard";
+import {CategoriesMoviesType, MovieType} from "../../models/models";
+import {fetchMovies} from "../../application/reducers/categoryMoviesReducer/categoryMovies-reducer";
 
 export const MoviesByCategory = () => {
     const dispatch = useDispatch()

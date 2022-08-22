@@ -1,7 +1,7 @@
 import {Options} from "react-youtube";
-import {MovieType} from "../api/apiTypes";
 // @ts-ignore
 import movieTrailer from 'movie-trailer'
+import {MovieType} from "../models/models";
 
 export const opts = {
     height: '390',

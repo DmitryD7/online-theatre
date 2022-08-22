@@ -1,5 +1,4 @@
 import React, {useCallback, useState} from "react";
-import {MovieType} from "../../../api/apiTypes";
 import {makeStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -12,6 +11,7 @@ import {BASE_IMG_URL} from "../../App/App";
 import {truncate} from "../../Header/Header";
 import {handleShowTrailerClick} from "../../../utils/showTrailer";
 import {MovieTrailer} from "../../../components/MovieTrailer/MovieTrailer";
+import {MovieType} from "../../../models/models";
 
 const useStyles = makeStyles({
     root: {

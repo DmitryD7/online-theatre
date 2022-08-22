@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import s from "./MovieRow.module.scss"
 import {Movie} from "./Movie/Movie";
-import {MovieType} from "../../../api/apiTypes";
 import {handleShowTrailerClick} from "../../../utils/showTrailer";
 import {MovieTrailer} from "../../../components/MovieTrailer/MovieTrailer";
+import {MovieType} from "../../../models/models";
 
 export const MoviesRow = (props: MovieRowsPropsType) => {
     const [trailerUrl, setTrailerUrl] = useState<string | null>('')

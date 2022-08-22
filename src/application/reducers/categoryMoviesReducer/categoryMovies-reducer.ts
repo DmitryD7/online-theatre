@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {moviesApi} from "../../api/api";
-import {MovieType} from "../../api/apiTypes";
+import {moviesApi} from "../../../api/api";
+import {CategoriesMoviesType, MovieType} from "../../../models/models";
 
 
 export const fetchMovies = createAsyncThunk<{ movies: MovieType[] }, CategoriesMoviesType, ThunkError>('categoryMovies/fetchMovies', async (category, thunkAPI) => {
@@ -26,20 +26,19 @@ export const fetchMovies = createAsyncThunk<{ movies: MovieType[] }, CategoriesM
                 const resHorror = await moviesApi.fetchHorror()
                 return {movies: resHorror.data.results}
             }
-            default: throw new Error("Can't get data");
+            default:
+                throw new Error("Can't get data");
         }
     } catch (error) {
         return thunkAPI.rejectWithValue({errors: [error.message]})
     }
 })
 
-//export const asyncMoviesActions = {fetchTrending}
-
 export const slice = createSlice({
     name: 'categoryMovies',
     initialState: {} as CategoryMoviesStateType,
     reducers: {
-        setCategory (state, action: PayloadAction<CategoriesMoviesType>) {
+        setCategory(state, action: PayloadAction<CategoriesMoviesType>) {
             return {
                 ...state,
                 category: action.payload
@@ -57,8 +56,6 @@ export const slice = createSlice({
 })
 
 export const {setCategory} = slice.actions
-
-export type CategoriesMoviesType = 'action' | 'comedy' | 'horror' | 'drama' | 'documentary'
 
 export type CategoryMoviesStateType = {
     movies: MovieType[]

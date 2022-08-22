@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {moviesApi} from "../../api/api";
-import {MovieType} from "../../api/apiTypes";
+import {moviesApi} from "../../../api/api";
+import {MovieType} from "../../../models/models";
 
 
 export const fetchTrending = createAsyncThunk<MoviesStateType, undefined, ThunkError>('movies/fetchMovies', async (param, thunkAPI) => {
@@ -18,15 +18,13 @@ export const fetchTrending = createAsyncThunk<MoviesStateType, undefined, ThunkE
     }
 })
 
-//export const asyncMoviesActions = {fetchTrending}
-
 export const slice = createSlice({
     name: 'movies',
     initialState: {} as MoviesStateType,
     reducers: {},
     extraReducers: builder => {
         builder.addCase(fetchTrending.fulfilled, (state, action) => {
-           return state = action.payload
+            return state = action.payload
         })
     }
 })

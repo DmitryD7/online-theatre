@@ -1,5 +1,5 @@
 import axios from "axios"
-import {CommonResponseType} from "./apiTypes";
+import {CommonResponseType} from "../models/models";
 
 const instanceApi = axios.create({
     baseURL: 'https://api.themoviedb.org/3/'
