@@ -3,7 +3,7 @@ import {moviesApi} from "../../../api/api";
 import {CategoriesMoviesType, MovieType, ThunkError} from "../../../models/models";
 import {appActions} from "../../actions/appCommonActions";
 
-const {setAppStatus} = appActions;
+const {setAppStatus, setAppError} = appActions;
 
 export const fetchMovies = createAsyncThunk<{ movies: MovieType[] }, CategoriesMoviesType, ThunkError>('categoryMovies/fetchMovies', async (category, thunkAPI) => {
     thunkAPI.dispatch(setAppStatus({status: "loading"}))
@@ -11,39 +11,42 @@ export const fetchMovies = createAsyncThunk<{ movies: MovieType[] }, CategoriesM
         switch (category) {
             case "action": {
                 const resAction = await moviesApi.fetchActionMovies();
-                thunkAPI.dispatch(setAppStatus({status: "succeeded"}))
+                thunkAPI.dispatch(setAppStatus({status: "succeeded"}));
                 return {movies: resAction.data.results};
             }
             case "comedy": {
                 const resComedy = await moviesApi.fetchComedy();
-                thunkAPI.dispatch(setAppStatus({status: "succeeded"}))
+                thunkAPI.dispatch(setAppStatus({status: "succeeded"}));
                 return {movies: resComedy.data.results};
             }
             case "documentary": {
                 const resDocumentaries = await moviesApi.fetchDocumentaries();
-                thunkAPI.dispatch(setAppStatus({status: "succeeded"}))
+                thunkAPI.dispatch(setAppStatus({status: "succeeded"}));
                 return {movies: resDocumentaries.data.results};
             }
             case "drama": {
                 const resDrama = await moviesApi.fetchDrama();
-                thunkAPI.dispatch(setAppStatus({status: "succeeded"}))
+                thunkAPI.dispatch(setAppStatus({status: "succeeded"}));
                 return {movies: resDrama.data.results};
             }
             case "horror": {
                 const resHorror = await moviesApi.fetchHorror();
-                thunkAPI.dispatch(setAppStatus({status: "succeeded"}))
+                thunkAPI.dispatch(setAppStatus({status: "succeeded"}));
                 return {movies: resHorror.data.results};
             }
             default: {
-                thunkAPI.dispatch(setAppStatus({status: "failed"}))
+                thunkAPI.dispatch(setAppStatus({status: "failed"}));
+                thunkAPI.dispatch(setAppError({error: 'Some error occurred'}))
                 throw new Error("Can't get data");
             }
         }
     } catch (error) {
-        setAppStatus({status: "failed"});
-        return thunkAPI.rejectWithValue({errors: [error.message]})
+        console.log(error)
+        thunkAPI.dispatch(setAppStatus({status: "failed"}));
+        thunkAPI.dispatch(setAppError({error: error.message}));
+        return thunkAPI.rejectWithValue({errors: [error.message]});
     }
-})
+});
 
 export const slice = createSlice({
     name: 'categoryMovies',
