@@ -4,9 +4,8 @@ import theatreLogo from "../../assets/images/movieTheatre.png"
 import userAvatar from "../../assets/images/avatar.png"
 import {SelectComponent} from "../Select/Select";
 import {useDispatch, useSelector} from "react-redux";
-import {AppRootStateType} from "../../utils/types";
 import {NavLink} from "react-router-dom";
-import {CategoriesMoviesType} from "../../models/models";
+import {AppRootStateType, CategoriesMoviesType} from "../../models/models";
 import {setCategory} from "../../application/reducers/categoryMoviesReducer/categoryMovies-reducer";
 
 export const Nav = () => {

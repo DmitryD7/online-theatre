@@ -26,6 +26,7 @@ export const MovieTrailer = (props: MovieTrailerPropsType) => {
             </div>
         </div>
     );
+
 };
 
 type MovieTrailerPropsType = {

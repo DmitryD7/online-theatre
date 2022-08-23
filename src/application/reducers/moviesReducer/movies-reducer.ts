@@ -18,7 +18,7 @@ export const fetchTrending = createAsyncThunk<MoviesStateType, undefined, ThunkE
             popular: resPopular.data.results
         }
     } catch (error) {
-        setAppStatus({status: "failed"});
+        thunkAPI.dispatch(setAppStatus({status: "failed"}))
         return thunkAPI.rejectWithValue({errors: [error.message]})
     }
 })

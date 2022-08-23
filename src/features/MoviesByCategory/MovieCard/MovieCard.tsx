@@ -52,15 +52,17 @@ const useStyles = makeStyles({
 
 export const MovieCard = (props: MoviePropsType) => {
     const classes = useStyles();
-    const {movie} = props
+    const {movie, handleError} = props;
 
     const [trailerUrl, setTrailerUrl] = useState<string>('')
 
-    const showTrailer = useCallback(() => handleShowTrailerClick({
-        movie,
-        trailerUrl,
-        setTrailerUrl
-    }), [movie, trailerUrl])
+    const showTrailer = useCallback(async () => {
+        try {
+            await handleShowTrailerClick({movie, trailerUrl, setTrailerUrl});
+        } catch (e) {
+            handleError(e.message);
+        }
+    }, [movie, trailerUrl, handleError]);
 
     return (
         <><Card className={classes.root}>
@@ -97,5 +99,6 @@ export const MovieCard = (props: MoviePropsType) => {
 }
 
 type MoviePropsType = {
-    movie: MovieType
+    movie: MovieType,
+    handleError: (message: string) => void,
 }

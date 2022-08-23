@@ -5,18 +5,24 @@ import {MovieType} from "../../../../models/models";
 
 
 export const Movie = (props: MoviePropsType) => {
+    const {movie, handleClick} = props;
 
     const clickHandler = () => {
-        props.handleClick(props.movie)
-    }
+        handleClick(movie);
+    };
 
-    return <div className={s.movie}>
-        <img src={`${BASE_IMG_URL}${props.movie?.poster_path}`} alt={props.movie?.title || props.movie?.name}
-             className={s.movie_img} onClick={clickHandler}/>
-    </div>
-}
+    return (
+        <div className={s.movie}>
+            <img
+                src={`${BASE_IMG_URL}${props.movie?.poster_path}`}
+                alt={movie?.title || movie?.name}
+                className={s.movie_img} onClick={clickHandler}
+            />
+        </div>
+    );
+};
 
 type MoviePropsType = {
-    handleClick: (movie: any) => void
-    movie: MovieType
-}
+    handleClick: (movie: MovieType) => void,
+    movie: MovieType,
+};

@@ -25,7 +25,7 @@ export const appSlice = createSlice({
 
 export default appSlice.reducer;
 
-type AppStateType = {
+export type AppStateType = {
     status: RequestStatusType,
     error: string | null,
 }
